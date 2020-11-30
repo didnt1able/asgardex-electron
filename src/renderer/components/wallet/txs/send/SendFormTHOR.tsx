@@ -148,7 +148,7 @@ export const SendFormTHOR: React.FC<Props> = (props): JSX.Element => {
 
   const onFinishHandler = useCallback(
     ({ amount, recipient, memo }: FormValues) => {
-      onSubmit({ recipient, amount: assetToBase(assetAmount(amount)), asset: balance.asset, memo })
+      onSubmit({ recipient, amount: assetToBase(assetAmount(amount)), asset: balance.asset, memo, feeRate: 0 })
     },
     [onSubmit, balance]
   )

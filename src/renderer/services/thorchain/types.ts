@@ -18,6 +18,7 @@ export type SendTxParams = {
   amount: BaseAmount
   asset: Asset
   memo?: string
+  feeRate: any
 }
 
 export type AddressValidation = Client['validateAddress']

@@ -86,7 +86,8 @@ export const SwapView: React.FC<Props> = (_): JSX.Element => {
               recipient: endpoint.address,
               amount: assetToBase(amount),
               asset: source,
-              memo
+              memo,
+              feeRate: 0
             })
           }
         })

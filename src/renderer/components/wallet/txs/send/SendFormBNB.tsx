@@ -37,7 +37,7 @@ export type FormValues = {
 type Props = {
   balances: Balances
   balance: Balance
-  onSubmit: ({ recipient, amount, asset, memo }: SendTxParams) => void
+  onSubmit?: ({ recipient, amount, asset, memo }: SendTxParams) => void
   isLoading?: boolean
   addressValidation: AddressValidation
   fee: O.Option<AssetAmount>
@@ -149,7 +149,8 @@ export const SendFormBNB: React.FC<Props> = (props): JSX.Element => {
 
   const onFinishHandler = useCallback(
     ({ amount, recipient, memo }: FormValues) => {
-      onSubmit({ recipient, amount: assetToBase(assetAmount(amount)), asset: balance.asset, memo })
+      onSubmit &&
+        onSubmit({ recipient, amount: assetToBase(assetAmount(amount)), asset: balance.asset, memo, feeRate: 0 })
     },
     [onSubmit, balance]
   )

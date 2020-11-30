@@ -1,3 +1,4 @@
+import * as FP from 'fp-ts/function'
 import * as O from 'fp-ts/lib/Option'
 import * as RxOp from 'rxjs/operators'
 
@@ -10,3 +11,17 @@ export const address$: (client$: XChainClient$) => Address$ = (client$) =>
     RxOp.distinctUntilChanged(eqOString.equals),
     RxOp.shareReplay(1)
   )
+
+export const addressValidator$ = (client$: XChainClient$) => {
+  const res = client$.pipe(
+    RxOp.map(
+      FP.flow(
+        O.map((client) => client.validateAddress),
+        O.getOrElse(() => (_: string): boolean => true)
+      )
+    )
+  )
+  res.subscribe((v) => console.log('validatorr --- ', v))
+
+  return res
+}

@@ -1,3 +1,4 @@
+import * as address from './address'
 import { clientByChain$ } from './client'
 import { isCrossChainStake$ } from './common'
 import {
@@ -10,6 +11,7 @@ import {
 } from './fees'
 import { retrieveLedgerAddress, removeLedgerAddress } from './ledger'
 import { asymDepositTxMemo$, symDepositTxMemo$ } from './memo'
+import { transaction } from './transaction'
 
 /**
  * Exports all functions and observables needed at UI level (provided by `ChainContext`)
@@ -26,5 +28,7 @@ export {
   symDepositTxMemo$,
   asymDepositTxMemo$,
   retrieveLedgerAddress,
-  removeLedgerAddress
+  removeLedgerAddress,
+  transaction,
+  address
 }

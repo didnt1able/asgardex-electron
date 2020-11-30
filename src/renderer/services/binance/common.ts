@@ -13,7 +13,7 @@ import { ClientStateForViews } from '../clients/types'
 import { getClient, getClientStateForViews } from '../clients/utils'
 import { keystoreService } from '../wallet/keystore'
 import { getPhrase } from '../wallet/util'
-import { ClientState, ClientState$, Client$ } from './types'
+import { ClientState, ClientState$ } from './types'
 
 /**
  * Binance network depending on `Network`
@@ -53,7 +53,7 @@ const clientState$: ClientState$ = Rx.combineLatest([keystoreService.keystore$, 
   )
 )
 
-const client$: Client$ = clientState$.pipe(map(getClient), shareReplay(1))
+const client$: Observable<O.Option<Client>> = clientState$.pipe(map(getClient), shareReplay(1))
 
 /**
  * Helper stream to provide "ready-to-go" state of latest `BinanceClient`, but w/o exposing the client
