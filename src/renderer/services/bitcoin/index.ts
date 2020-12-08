@@ -1,12 +1,13 @@
 import { balances$, reloadBalances } from './balances'
 import { client$, clientViewState$, address$, explorerUrl$, getExplorerTxUrl$ } from './common'
 import { createFeesService } from './fees'
-import { createLedgerService } from './ledger'
+import { createLedgerService, createLedgerTransferService } from './ledger'
 import { createTransactionService } from './transaction'
 
 const { pushTx, txRD$, resetTx, sendDepositTx, txs$ } = createTransactionService(client$)
 const { fees$, reloadFees, poolFee$, getPoolFeeRate, reloadDepositFee, poolFeeRate$ } = createFeesService(client$)
 const { ledgerAddress$, retrieveLedgerAddress, removeLedgerAddress } = createLedgerService()
+const { pushLedgerTx, ledgerTxRD$, resetLedgerTx } = createLedgerTransferService(client$)
 
 export {
   client$,
@@ -29,5 +30,8 @@ export {
   poolFeeRate$,
   ledgerAddress$,
   retrieveLedgerAddress,
-  removeLedgerAddress
+  removeLedgerAddress,
+  pushLedgerTx,
+  ledgerTxRD$,
+  resetLedgerTx
 }
