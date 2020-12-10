@@ -7,7 +7,7 @@ import { createTransactionService } from './transaction'
 const { pushTx, txRD$, resetTx, sendDepositTx, txs$ } = createTransactionService(client$)
 const { fees$, reloadFees, poolFee$, getPoolFeeRate, reloadDepositFee, poolFeeRate$ } = createFeesService(client$)
 const { ledgerAddress$, retrieveLedgerAddress, removeLedgerAddress } = createLedgerService()
-const { pushLedgerTx, ledgerTxRD$, resetLedgerTx } = createLedgerTransferService(client$)
+const { pushLedgerTx, ledgerTxRD$, resetLedgerTx } = createLedgerTransferService()
 
 export {
   client$,
